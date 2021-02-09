@@ -49,6 +49,8 @@ export default class AddContact extends Component {
                 error: {},
             }
         )
+
+        this.props.history.push('/')
     }
 
     render() {
@@ -59,6 +61,8 @@ export default class AddContact extends Component {
                 {value => {
                     const {dispatch} = value;
                     return(
+                        <React.Fragment>
+                            <h1 className="display-4">Add a <span className="text-danger">Contact</span></h1>
                         <div className="card card-body mb-3">
                         <div className="card-header">Add a Contact</div>
                         <div className="card-body">
@@ -73,7 +77,7 @@ export default class AddContact extends Component {
                             />
                         </form>
                 </div>
-            </div>
+            </div></React.Fragment>
                     )
                 }}
             </Consumer>
