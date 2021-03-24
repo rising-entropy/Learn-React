@@ -1,0 +1,17 @@
+.paraf
+{
+    padding: 1%;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px  #eee;
+}
+
+.headMe
+{
+    padding: 1%;
+    border-radius: 20px;
+    font: inherit;
+    text-decoration:double;
+    box-shadow: 0 0 10px  #eee;
+}
