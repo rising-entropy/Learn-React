@@ -88,7 +88,7 @@ class App extends Component {
 export default App;
 */
 
-class App extends Component {
+/*class App extends Component {
   
   state = {
     players : [
@@ -150,3 +150,92 @@ class App extends Component {
 }
 
 export default App;
+*/
+
+class App extends Component {
+
+  state = {
+    person: [
+      {namee: 'Chris', country: 'United States'},
+      {namee: 'Kevin', country: 'Belgium'},
+      {namee: 'Virgil', country: 'Netherlands'},
+      {namee: 'Pierre', country: 'Gabon'},
+    ]
+  }
+
+  changeNameHandler = (newName, id) => {
+
+    if(id===0)
+    {this.setState({
+      person: [
+        {namee: newName, country: 'United States'},
+        {namee: 'Kevin', country: 'Belgium'},
+        {namee: 'Virgil', country: 'Netherlands'},
+        {namee: 'Pierre', country: 'Gabon'},
+      ]
+    });}
+    if(id===1)
+    {this.setState({
+      person: [
+        {namee: 'Chris', country: 'United States'},
+        {namee: newName, country: 'Belgium'},
+        {namee: 'Virgil', country: 'Netherlands'},
+        {namee: 'Pierre', country: 'Gabon'},
+      ]
+    });}
+    if(id===2)
+    {this.setState({
+      person: [
+        {namee: 'Chris', country: 'United States'},
+        {namee: 'Kevin', country: 'Belgium'},
+        {namee: newName, country: 'Netherlands'},
+        {namee: 'Pierre', country: 'Gabon'},
+      ]
+    });}
+    if(id===3)
+    {this.setState({
+      person: [
+        {namee: 'Chris', country: 'United States'},
+        {namee: 'Kevin', country: 'Belgium'},
+        {namee: 'Virgil', country: 'Netherlands'},
+        {namee: newName, country: 'Gabon'},
+      ]
+    });}
+  }
+
+  changeCountryHandler = (event) => {
+
+    this.setState({
+      person: [
+        {namee: 'Chris', country: event.target.value},
+        {namee: 'Kevin', country: 'Belgium'},
+        {namee: 'Virgil', country: 'Netherlands'},
+        {namee: 'Pierre', country: 'Gabon'},
+      ]
+    });
+    console.log(event.target.value);
+  } 
+
+
+
+  render() {
+
+    return(
+      <div>
+      <Person name={this.state.person[0].namee} country={this.state.person[0].country} switchName={this.changeNameHandler.bind(this, 'Christian Pulisic', 0)} changeCountry={this.changeCountryHandler} />
+      <Person name={this.state.person[1].namee} country={this.state.person[1].country} switchName={this.changeNameHandler.bind(this, 'Kevin de Bruyne', 1)} changeCountry={this.changeCountryHandler} />
+      <Person name={this.state.person[2].namee} country={this.state.person[2].country} switchName={this.changeNameHandler.bind(this, 'Virgil Van Djik', 2)} changeCountry={this.changeCountryHandler} />
+      <Person name={this.state.person[3].namee} country={this.state.person[3].country} switchName={() => this.changeNameHandler('Pierre-Emerick Aubameyang', 3)} changeCountry={this.changeCountryHandler} />
+      </div>
+    )
+
+  }
+}
+
+export default App;
+
+//There are 2 ways to go about sending parameters to other functions
+// switcher={this.switchNameHandler.bind(this, 'Gabriel Jesus')}
+// switcher={() => this.switchNameHandler('Sergio Aguero')}
+
+//if there are no params ->  changeCountry={this.changeCountryHandler} works.
