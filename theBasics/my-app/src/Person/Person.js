@@ -7,7 +7,7 @@ import './person.css';
 
 const Person = (props) => {
     return (
-        <div className="cardo"><p onClick={props.switcher}>I am {props.name} and my age is {props.age}.</p>
+        <div className="cardo"><p onClick={props.click}>I am {props.name} and my age is {props.age}.</p>
         <p>Position: {props.children}</p>
         <input type="text" value={props.name} onChange={props.changeTheName}></input>
         </div>

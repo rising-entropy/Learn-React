@@ -1,2 +1,3 @@
-# Contact-Manager-React
-Learning React by making a Contact Manager
+# Tips
+
+### Always change state Immutably. Try to make a copy and update.
