@@ -2,7 +2,7 @@ import './App.css';
 import Person from './Person/Person';
 import React from 'react';
 import {Component} from 'react';
-import Radium, {StyleRoot} from 'radium';
+import styled from 'styled-components';
 
 //JSX has some restrictions over what words to use, so class --> className.
 //Only 1 Element can be returned (Typically a div).
@@ -147,19 +147,21 @@ class App extends Component {
       classes.push('bold')
     }
 
-    let styleButton = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      color: 'white',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      transition: '0.5s',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black',
+    let StyledButton = styled.button`
+    {
+      background-color: ${props => props.alter ? 'red' : 'green'};
+      font: inherit;
+      color: white;
+      border: 1px solid blue;
+      padding: 8px;
+      cursor: pointer;
+      transition: 0.5s;
+
+      &:hover {
+        background-color: ${props => props.alter ? 'salmon' : 'lightgreen'};
+        color: black;
       }
-    };
+    }`;
 
     let persons = null;
     if(this.state.showPlayers) {
@@ -171,29 +173,27 @@ class App extends Component {
       </div>
     );
 
-    styleButton.backgroundColor = 'red';
+    /*styleButton.backgroundColor = 'red';
     styleButton[':hover'] = {
       backgroundColor: 'salmon',
       color: 'black'
-    }
+    }*/
   }
 // check how we declared changeTheName. event is taken as a arrow function parameter, event and id sent.
     return (
-      <StyleRoot>
     <div className="App">
       <h1>High Potential Players!</h1>
       <p className={classes.join(' ')}>Take out Hazard from Madrid</p>
       <br/>
-      <button onClick={this.togglePlayers} style={styleButton}>Toggle Players</button>
+      <StyledButton alter={this.state.showPlayers} onClick={this.togglePlayers}>Toggle Players</StyledButton>
       <br/>
 
       {persons}
 
     </div>
-    </StyleRoot>
     // React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hello There!'))
   );
 }
 }
 
-export default Radium(App);
+export default App;
