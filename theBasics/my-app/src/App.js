@@ -2,6 +2,8 @@ import './App.css';
 import Person from './Person/Person';
 import React from 'react';
 import {Component} from 'react';
+import Radium, {StyleRoot} from 'radium';
+
 //JSX has some restrictions over what words to use, so class --> className.
 //Only 1 Element can be returned (Typically a div).
 
@@ -119,13 +121,6 @@ class App extends Component {
 
   }
 
-  styleButton = {
-    backgroundColor: 'white',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer'
-  };
 
   togglePlayers = () => {
     this.setState({showPlayers: !this.state.showPlayers});
@@ -140,6 +135,32 @@ class App extends Component {
 
   render()
   {
+
+    let classes = [];
+
+    if(this.state.players.length <= 2)
+    {
+      classes.push('red')
+    }
+    if(this.state.players.length <= 1)
+    {
+      classes.push('bold')
+    }
+
+    let styleButton = {
+      backgroundColor: 'green',
+      font: 'inherit',
+      color: 'white',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+      transition: '0.5s',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black',
+      }
+    };
+
     let persons = null;
     if(this.state.showPlayers) {
     persons = (
@@ -149,21 +170,30 @@ class App extends Component {
         })}
       </div>
     );
+
+    styleButton.backgroundColor = 'red';
+    styleButton[':hover'] = {
+      backgroundColor: 'salmon',
+      color: 'black'
+    }
   }
 // check how we declared changeTheName. event is taken as a arrow function parameter, event and id sent.
     return (
+      <StyleRoot>
     <div className="App">
       <h1>High Potential Players!</h1>
+      <p className={classes.join(' ')}>Take out Hazard from Madrid</p>
       <br/>
-      <button onClick={this.togglePlayers} style={this.styleButton}>Toggle Players</button>
+      <button onClick={this.togglePlayers} style={styleButton}>Toggle Players</button>
       <br/>
 
       {persons}
 
     </div>
+    </StyleRoot>
     // React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hello There!'))
   );
 }
 }
 
-export default App;
+export default Radium(App);
