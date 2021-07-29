@@ -12,6 +12,10 @@ class Counter extends Component{
     this.props.decrement()
   }
 
+  increaseCounterHandler = () => {
+    this.props.increase()
+  }
+
   toggleCounterHandler = () => {};
 
   render()
@@ -22,6 +26,7 @@ class Counter extends Component{
       <div className={classes.value}>{this.props.counter}</div>
       <button className="counterButton" onClick={this.incrementCounterHandler.bind(this)}>Increment Counter</button>
       <button className="counterButton" onClick={this.decrementCounterHandler.bind(this)}>Decrement Counter</button><br/>
+      <button className="counterButton" onClick={this.increaseCounterHandler.bind(this)}>Increase Counter</button><br/>
       <button className="counterButton" onClick={this.toggleCounterHandler}>Toggle Counter</button>
     </main>
     )
@@ -37,7 +42,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     increment: () => dispatch({type: 'increment'}),
-    decrement: () => dispatch({type: 'decrement'})
+    decrement: () => dispatch({type: 'decrement'}),
+    increase: () => dispatch({type: 'increase', amount: 5})
   }
 }
 
