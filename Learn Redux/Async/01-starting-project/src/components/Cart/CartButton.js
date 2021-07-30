@@ -9,10 +9,12 @@ const CartButton = (props) => {
     dispatch(uiActions.toggleCart())
   }
 
+  const totalQuantity = useSelector(state => state.cart.totalQuantity)
+
   return (
     <button className={classes.button} onClick={cartClickHandler}>
       <span>My Cart</span>
-      <span className={classes.badge}>1</span>
+      <span className={classes.badge}>{totalQuantity}</span>
     </button>
   );
 };
